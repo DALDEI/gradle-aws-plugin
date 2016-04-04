@@ -2,9 +2,9 @@
 
 import com.amazonaws.services.s3.model.ObjectMetadata;
 
-import jp.classmethod.aws.gradle.s3.AmazonS3FileUploadTask;
-import jp.classmethod.aws.gradle.s3.CreateBucketTask;
-import jp.classmethod.aws.gradle.s3.DeleteBucketTask;
+import org.xmlsh.aws.gradle.s3.AmazonS3FileUploadTask;
+import org.xmlsh.aws.gradle.s3.CreateBucketTask;
+import org.xmlsh.aws.gradle.s3.DeleteBucketTask;
 
 buildscript {
 	repositories {
@@ -37,7 +37,7 @@ task uploadContent(type: AmazonS3FileUploadTask, dependsOn: createBucket) {
 	file file("target-file.txt") // must be directory
 	bucketName "gradle-aws-plugin-sample"
 	key "01-s3-upload-simple/"
-	
+
 	def m = new ObjectMetadata()
 	m.setCacheControl("no-cache, no-store")
 	objectMetadata = m

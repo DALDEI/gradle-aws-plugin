@@ -53,7 +53,7 @@ Implement the logic to publish your archive in that file, then run the command t
 
 See for example:
 
-u[jp.classmethod.aws.gradle](deploy/jp.classmethod.aws.gradle) 
+u[org.xmlsh.aws.gradle](deploy/org.xmlsh.aws.gradle) 
 
 Or using maven-publish:
  

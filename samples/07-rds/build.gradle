@@ -1,9 +1,9 @@
 // -*- coding: utf-8; mode: groovy -*-
 
-import jp.classmethod.aws.gradle.rds.AmazonRDSDeleteDBInstanceTask;
-import jp.classmethod.aws.gradle.rds.AmazonRDSMigrateDBInstanceTask;
-import jp.classmethod.aws.gradle.rds.AmazonRDSRebootDBInstanceTask;
-import jp.classmethod.aws.gradle.rds.AmazonRDSWaitInstanceStatusTask;
+import org.xmlsh.aws.gradle.rds.AmazonRDSDeleteDBInstanceTask;
+import org.xmlsh.aws.gradle.rds.AmazonRDSMigrateDBInstanceTask;
+import org.xmlsh.aws.gradle.rds.AmazonRDSRebootDBInstanceTask;
+import org.xmlsh.aws.gradle.rds.AmazonRDSWaitInstanceStatusTask;
 
 buildscript {
 	repositories {

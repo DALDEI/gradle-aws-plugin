@@ -1,7 +1,7 @@
 // -*- coding: utf-8; mode: groovy -*-
 
-import jp.classmethod.aws.gradle.route53.CreateHostedZoneTask;
-import jp.classmethod.aws.gradle.route53.DeleteHostedZoneTask;
+import org.xmlsh.aws.gradle.route53.CreateHostedZoneTask;
+import org.xmlsh.aws.gradle.route53.DeleteHostedZoneTask;
 
 buildscript {
 	repositories {
