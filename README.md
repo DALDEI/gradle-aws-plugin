@@ -3,6 +3,9 @@ Gradle AWS Plugin
 
 Gradle plugin to manage AWS resouces.
 
+Derived from the plugin of the same name @ https://github.com/classmethod-aws/gradle-aws-plugin
+
+
 Current Features / Supported AWS Products
 -----------------------------------------
 
@@ -95,7 +98,7 @@ These credentials are used to make API accesses by default. The format of the cr
 ```
 apply plugin: 'jp.classmethod.aws.s3'
 
-task syncObjects(type: jp.classmethod.aws.gradle.s3.SyncTask) {
+task syncObjects(type: org.xmlsh.aws.gradle.s3.SyncTask) {
   bucketName 'foobar.example.com'
   source file('path/to/objects')
 }
@@ -115,11 +118,11 @@ apply plugin: 'jp.classmethod.aws.ec2'
 //   region = 'us-east-1'
 // }
 
-task stopBastion(type: jp.classmethod.aws.gradle.ec2.AmazonEC2StopInstanceTask) {
+task stopBastion(type: org.xmlsh.aws.gradle.ec2.AmazonEC2StopInstanceTask) {
   instanceIds += 'i-12345678'
 }
 
-task startBastion(type: jp.classmethod.aws.gradle.ec2.AmazonEC2StartInstanceTask) {
+task startBastion(type: org.xmlsh.aws.gradle.ec2.AmazonEC2StartInstanceTask) {
   instanceIds += 'i-12345678'
 }
 ```
@@ -139,25 +142,25 @@ apply plugin: "jp.classmethod.aws.rds"
 // }
 
 task migrateDBInstance(type: AmazonRDSMigrateDBInstanceTask) {
-	dbInstanceIdentifier = "foobar"
-	allocatedStorage = 5
-	dbInstanceClass = "db.t2.micro"
-	engine = "MySQL"
-	masterUsername = "root"
-	masterUserPassword = "passW0rd"
-	vpcSecurityGroupIds = [ "sg-d3958fbf" ]
-	dbSubnetGroupName = "default"
-	multiAZ = false
-	publiclyAccessible = true
+  dbInstanceIdentifier = "foobar"
+  allocatedStorage = 5
+  dbInstanceClass = "db.t2.micro"
+  engine = "MySQL"
+  masterUsername = "root"
+  masterUserPassword = "passW0rd"
+  vpcSecurityGroupIds = [ "sg-d3958fbf" ]
+  dbSubnetGroupName = "default"
+  multiAZ = false
+  publiclyAccessible = true
 }
 
 task rebootDBInstance(type: AmazonRDSRebootDBInstanceTask) {
-	dbInstanceIdentifier = "foobar"
+  dbInstanceIdentifier = "foobar"
 }
 
 task deleteDBInstance(type: AmazonRDSDeleteDBInstanceTask) {
-	dbInstanceIdentifier = "foobar"
-	skipFinalSnapshot = true
+  dbInstanceIdentifier = "foobar"
+  skipFinalSnapshot = true
 }
 ```
 
@@ -169,13 +172,13 @@ Look [RDS example](samples/07-rds) for more information.
 ```
 apply plugin: 'jp.classmethod.aws.route53'
 
-ask createHostedZone(type: jp.classmethod.aws.gradle.route53.CreateHostedZoneTask) {
-	hostedZoneName "foobar.example.com"
-	callerReference '0BF44985-9D79-BF3B-A9B0-5AE24D6E86E1'
+ask createHostedZone(type: org.xmlsh.aws.gradle.route53.CreateHostedZoneTask) {
+  hostedZoneName "foobar.example.com"
+  callerReference '0BF44985-9D79-BF3B-A9B0-5AE24D6E86E1'
 }
 
-task deleteHostedZone(type: jp.classmethod.aws.gradle.route53.DeleteHostedZoneTask) {
-	hostedZoneId "XXXX"
+task deleteHostedZone(type: org.xmlsh.aws.gradle.route53.DeleteHostedZoneTask) {
+  hostedZoneId "XXXX"
 }
 ```
 
@@ -192,14 +195,14 @@ beanstalk {
 
   appName 'foobar'
   appDesc 'foobar demo application'
-  
+
   version {
     label = "foobar-${project.war.version}-${timestamp}"
     description = "${artifactId} v${version}"
     bucket = 'sample-bucket'
     key = "eb-apps/foobar-${project.war.version}-${timestamp}.${extension}"
   }
-  
+
   configurationTemplates {
     production {
       optionSettings = file('src/main/config/production.json')
@@ -210,7 +213,7 @@ beanstalk {
       solutionStackName = '64bit Amazon Linux 2013.09 running Tomcat 7 Java 7'
     }
   }
-  
+
   environment {
     envName = 'foobar'
     envDesc = 'foobar demo application development environemnt'
@@ -254,37 +257,37 @@ Look [CloudFormation example](samples/06-cloudformation) for more information.
 apply plugin: "base"
 apply plugin: "jp.classmethod.aws.lambda"
 aws {
-	profileName = "default"
-	region = "ap-northeast-1"
+  profileName = "default"
+  region = "ap-northeast-1"
 }
 
 lambda {
-	region = "us-east-1"
+  region = "us-east-1"
 }
 
 task zip(type: Zip) {
-	from "function/"
-	destinationDir file("build")
+  from "function/"
+  destinationDir file("build")
 }
 
 task migrateFunction(type: AWSLambdaMigrateFunctionTask, dependsOn: zip) {
-	functionName = "foobar"
-	role = "arn:aws:iam::${aws.accountId}:role/lambda-poweruser"
-	zipFile = zip.archivePath
-	handler = "DecodeBase64.handler"
+  functionName = "foobar"
+  role = "arn:aws:iam::${aws.accountId}:role/lambda-poweruser"
+  zipFile = zip.archivePath
+  handler = "DecodeBase64.handler"
 }
 
 task invokeFunction(type: AWSLambdaInvokeTask) {
-	functionName = "foobar"
-	invocationType = InvocationType.RequestResponse
-	payload = file("sample-input/input.txt")
-	doLast {
-		println "Lambda function result: " + new String(invokeResult.payload.array(), "UTF-8")
-	}
+  functionName = "foobar"
+  invocationType = InvocationType.RequestResponse
+  payload = file("sample-input/input.txt")
+  doLast {
+    println "Lambda function result: " + new String(invokeResult.payload.array(), "UTF-8")
+  }
 }
 
 task deleteFunction(type: AWSLambdaDeleteFunctionTask) {
-	functionName = "foobar"
+  functionName = "foobar"
 }
 ```
 

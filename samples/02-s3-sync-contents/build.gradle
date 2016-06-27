@@ -2,9 +2,9 @@
 
 import com.amazonaws.services.s3.model.ObjectMetadata;
 
-import jp.classmethod.aws.gradle.s3.CreateBucketTask;
-import jp.classmethod.aws.gradle.s3.DeleteBucketTask;
-import jp.classmethod.aws.gradle.s3.SyncTask;
+import org.xmlsh.aws.gradle.s3.CreateBucketTask;
+import org.xmlsh.aws.gradle.s3.DeleteBucketTask;
+import org.xmlsh.aws.gradle.s3.SyncTask;
 
 buildscript {
 	repositories {

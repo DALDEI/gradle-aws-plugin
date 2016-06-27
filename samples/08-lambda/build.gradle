@@ -2,10 +2,10 @@
 
 import com.amazonaws.services.lambda.model.InvocationType;
 
-import jp.classmethod.aws.gradle.lambda.AWSLambdaDeleteFunctionTask;
-import jp.classmethod.aws.gradle.lambda.AWSLambdaInvokeTask;
-import jp.classmethod.aws.gradle.lambda.AWSLambdaMigrateFunctionTask;
-import jp.classmethod.aws.gradle.lambda.AWSLambdaCreateFunctionTask;
+import org.xmlsh.aws.gradle.lambda.AWSLambdaDeleteFunctionTask;
+import org.xmlsh.aws.gradle.lambda.AWSLambdaInvokeTask;
+import org.xmlsh.aws.gradle.lambda.AWSLambdaMigrateFunctionTask;
+import org.xmlsh.aws.gradle.lambda.AWSLambdaCreateFunctionTask;
 import com.amazonaws.services.lambda.model.Runtime;
 
 buildscript {

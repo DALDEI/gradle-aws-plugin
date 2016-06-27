@@ -18,7 +18,7 @@ apply plugin: "jp.classmethod.aws.cloudformation"
 
 // ==== Project settings
 
-group = 'jp.classmethod.aws.gradle.sample'
+group = 'org.xmlsh.aws.gradle.sample'
 version = '0.1-SNAPSHOT'
 ext.artifactId = '06-cloudformation'
 
@@ -99,7 +99,7 @@ task createBundle(type: Zip, dependsOn: [createDockerfile, createBundleResources
 	from jar.archivePath
 }
 
-task uploadBundle(type: jp.classmethod.aws.gradle.s3.AmazonS3FileUploadTask, dependsOn: createBundle) {
+task uploadBundle(type: org.xmlsh.aws.gradle.s3.AmazonS3FileUploadTask, dependsOn: createBundle) {
 	group "AWS"
 	description "Upload ${artifactId} application bundle file to S3."
 	

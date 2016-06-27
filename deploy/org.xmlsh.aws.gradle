@@ -1,7 +1,7 @@
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'ivy-publish'
-apply plugin: 'com.jfrog.bintray'
+//apply plugin: 'com.jfrog.bintray'
 
 publishing {
     repositories {

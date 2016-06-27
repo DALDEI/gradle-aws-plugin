@@ -1,11 +1,11 @@
 // -*- coding: utf-8; mode: groovy -*-
 
-import jp.classmethod.aws.gradle.ec2.AmazonEC2ImportKeyTask;
-import jp.classmethod.aws.gradle.ec2.AmazonEC2RunInstanceTask;
-import jp.classmethod.aws.gradle.ec2.AmazonEC2StartInstanceTask;
-import jp.classmethod.aws.gradle.ec2.AmazonEC2StopInstanceTask;
-import jp.classmethod.aws.gradle.ec2.AmazonEC2TerminateInstanceTask;
-import jp.classmethod.aws.gradle.ec2.AmazonEC2WaitInstanceStatusTask;
+import org.xmlsh.aws.gradle.ec2.AmazonEC2ImportKeyTask;
+import org.xmlsh.aws.gradle.ec2.AmazonEC2RunInstanceTask;
+import org.xmlsh.aws.gradle.ec2.AmazonEC2StartInstanceTask;
+import org.xmlsh.aws.gradle.ec2.AmazonEC2StopInstanceTask;
+import org.xmlsh.aws.gradle.ec2.AmazonEC2TerminateInstanceTask;
+import org.xmlsh.aws.gradle.ec2.AmazonEC2WaitInstanceStatusTask;
 
 buildscript {
 	repositories {
